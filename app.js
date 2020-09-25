@@ -22,8 +22,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 //Set up default mongoose connection
-var mongoDB =
+var dev_db_url =
   "mongodb+srv://new_user22988:zZasd1234@cluster.wj9q3.mongodb.net/local_library?retryWrites=true&w=majority";
+/*var mongoDB =
+  "mongodb+srv://new_user22988:zZasd1234@cluster.wj9q3.mongodb.net/local_library?retryWrites=true&w=majority";*/
+
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //Get the default connection
